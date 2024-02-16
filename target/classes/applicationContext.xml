@@ -8,6 +8,9 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<bean id="musicBean"
-		class = "ru.yablokov.spring_1.ClassicalMusic">	
+		class = "ru.yablokov.spring_1.ClassicalMusic"
+		init-method="doMyInit"
+		destroy-method="doMyDestroy"
+		factory-method="getClassicalMusic">	
 	</bean>		
 </beans>
