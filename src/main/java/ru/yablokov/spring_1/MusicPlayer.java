@@ -1,39 +1,19 @@
 package ru.yablokov.spring_1;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import java.util.List;
+import java.util.Random;
 
-@Component
 public class MusicPlayer {
+	private List<Music> musicList;
 
-	@Value("${musicPlayer.name}")
-	private String name;
-
-	@Value("${musicPlayer.volume}")
-	private int volume;
-	
-//	private Music music1;
-//	private Music music2;
-
-	public String getName() {
-		return name;
+	public MusicPlayer(List<Music> musicList) {
+		this.musicList = musicList;
 	}
 
-	public int getVolume() {
-		return volume;
+	public String playMusic() {
+		Random random = new Random();
+		int index = random.nextInt(musicList.size());
+		Music music = musicList.get(index);
+		return "Playing: genre-" + music.getClass().getSimpleName() + ", " + music.getSong();
 	}
-	
-//	@Autowired
-//	public MusicPlayer(@Qualifier("classicalMusic") Music music1, @Qualifier("rockMusic") Music music2) {
-//		this.music1 = music1;
-//		this.music2 = music2;
-//	}
-
-//	public String playMusic(Genre genre) {
-//		if (genre == Genre.CLASSICAL)
-//			return "Playing: genre-Classical, " + music1.getSong();
-//		if (genre == Genre.ROCK)
-//			return "Playing: genre-Rock, " + music2.getSong();
-//		return "No genre";
-//	}
 }
